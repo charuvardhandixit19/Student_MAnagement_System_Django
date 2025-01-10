@@ -1,0 +1,123 @@
+<!-- templates/search_item.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Student Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+        }
+        h1, h2 {
+            color: #4CAF50;
+            text-align: center;
+            margin: 20px 0;
+        }
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #555;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input:focus {
+            border-color: #4CAF50;
+            outline: none;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .message {
+            font-size: 16px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .message.success {
+            color: green;
+        }
+        .message.error {
+            color: red;
+        } 
+    </style>
+</head>
+<body>
+    {% include 'students/navbar.html' %}
+    <h1>Update Student Information</h1>
+
+    <!-- Form to Fetch Student by ID -->
+    <form method="get" action="{% url 'update_student' %}">
+        <label for="id">Enter Student ID:</label>
+        <input type="text" name="id" id="id" required>
+    </br>
+        <button type="submit">Fetch Details</button>
+    </form>
+
+    <!-- Display Update Form if Student Exists -->
+    {% if student %}
+        <h2>Update Details for Student ID: {{ student.id }}</h2>
+        <form method="post" action="{% url 'update_student' %}">
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{ student.id }}">
+
+            <label for="first_name">First Name:</label>
+            <input type="text" name="first_name" id="first_name" value="{{ student.first_name }}" required>
+            <br>
+
+            <label for="last_name">Last Name:</label>
+            <input type="text" name="last_name" id="last_name" value="{{ student.last_name }}" required>
+            <br>
+
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" value="{{ student.email }}" required>
+            <br>
+
+            <label for="phone">Phone:</label>
+            <input type="text" name="phone" id="phone" value="{{ student.phone }}">
+            <br>
+
+            <button type="submit">Update</button>
+        </form>
+    {% elif error %}
+        <p style="color: red;">{{ error }}</p>
+    {% elif success %}
+        <p style="color: green;">{{ success }}</p>
+    {% endif %}
+</body>
+</html>

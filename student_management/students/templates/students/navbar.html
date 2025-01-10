@@ -1,0 +1,114 @@
+<!-- templates/partials/navbar.html -->
+<nav class="navbar">
+    <ul class="navbar-links">
+        <li><a href="{% url 'add_student' %}">Add Student</a></li>
+        <li><a href="{% url 'show_students' %}">Show Students</a></li>
+        <li><a href="{% url 'search_student' %}">Search Student</a></li>
+        <li><a href="{% url 'update_student' %}">Update Student</a></li>
+        <li><a href="{% url 'delete_student' %}">Delete Student</a></li>
+    </ul>
+</nav>
+
+<style>
+    /* Navbar Styles */
+    .navbar {
+        background-color: #007bff;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+    .navbar ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        gap: 15px;
+    }
+    .navbar a {
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+        padding: 5px 10px;
+        transition: background-color 0.3s;
+    }
+    .navbar a:hover {
+        background-color: #0056b3;
+        border-radius: 4px;
+    }
+
+    /* General Page Styles */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f9;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        min-height: 100vh;
+    }
+    h1 {
+        color: #4CAF50;
+        margin: 20px 0;
+    }
+    form {
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        width: 100%;
+    }
+    label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+    input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        width: 100%;
+    }
+    button:hover {
+        background-color: #45a049;
+    }
+    .message {
+        margin: 20px 0;
+        font-size: 16px;
+    }
+    .message.success {
+        color: green;
+    }
+    .message.error {
+        color: red;
+    }
+    a {
+        display: inline-block;
+        margin-top: 20px;
+        color: #4CAF50;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+</style>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Management</title>
+</head>
+<body>
+    {% include 'students/navbar.html' %}
+
+
+    <h1>Student List</h1>
+
+    <!-- Display the form for adding a new student -->
+    <h2>Add a New Student</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Renders the form fields -->
+        <button type="submit">Add Student</button>
+    </form>
+
+    <!-- Display the list of students -->
+    <h2>Existing Students</h2>
+    <table border="1">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+        </tr>
+        {% for student in students %}
+        <tr>
+            <td>{{ student.first_name }}</td>
+            <td>{{ student.last_name }}</td>
+            <td>{{ student.email }}</td>
+            <td>{{ student.phone }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">No students found.</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
